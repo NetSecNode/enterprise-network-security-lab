@@ -39,6 +39,17 @@ for the assessment phase.
 
 ---
 
+## IP Addressing & Subnetting
+
+The network address space was designed using VLSM (Variable 
+Length Subnet Masking) to optimize IP allocation across the 
+6-floor infrastructure, minimizing address waste while 
+maintaining clear segment boundaries.
+
+→ Full subnetting design: [`docs/subnetting.md`](docs/subnetting.md)
+
+---
+
 ## Security Tools (custom-built)
 
 ### 1. Port Scanner
@@ -64,7 +75,7 @@ Usage: python http_checker.py --url <URL> --path <path>
 
 ---
 
-### 3. Socket Sniffer *(bonus)*
+### 3. Socket Sniffer
 A raw socket packet capture tool written in Python.  
 Captures and displays network-level traffic for analysis.
 
@@ -94,15 +105,6 @@ Captures and displays network-level traffic for analysis.
 
 > ⚠️ All tests were performed in an isolated lab environment. 
 > No real systems were targeted.
-
----
-
-## Subnetting *(bonus)*
-
-VLSM-based subnet design to optimize address allocation 
-across the 6-floor network.
-
-→ [`docs/subnetting.md`](docs/subnetting.md)
 
 ---
 
