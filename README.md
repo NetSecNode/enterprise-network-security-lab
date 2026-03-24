@@ -34,7 +34,7 @@ for the assessment phase.
 | NAS               | 1 (connected to ground floor switch)         |
 | IDS/IPS           | 3 nodes on internal perimeter                |
 
-→ Full topology diagram: [`diagrams/network-topology.png`](diagrams/network-topology.png)  
+→ Full topology diagram: [`diagrams/network-topology.jpg`](diagrams/network-topology.jpg)  
 → Design rationale: [`docs/network-design.md`](docs/network-design.md)
 
 ---
