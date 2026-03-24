@@ -12,7 +12,7 @@ The infrastructure is designed around three core principles:
 clear separation between public-facing services, internal 
 LAN, and management traffic.
 
-→ Network topology diagram: [`../diagrams/network-topology.png`](../diagrams/network-topology.png)
+→ Network topology diagram: [`../diagrams/network-topology.png`](../diagrams/network-topology.jpg)
 
 ---
 
