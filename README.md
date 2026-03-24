@@ -118,4 +118,4 @@ across the 6-floor network.
 
 ## Author
 
-**[Il tuo nome o handle]** — [NetSecNode](https://github.com/NetSecNode)
+**[LC]** — [NetSecNode](https://github.com/NetSecNode)
