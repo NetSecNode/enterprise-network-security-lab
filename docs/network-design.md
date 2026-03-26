@@ -123,15 +123,16 @@ defined explicitly for each required flow, following the
 has access only to the resources strictly necessary for 
 its function.
 
-| Direction | Source | Destination | Action |
-|---|---|---|---|
-| Inbound (WAN → DMZ) | Any | Web server (port 80) | Allow |
-| Inbound (WAN → LAN) | Any | Any | Block |
-| Internal (Management → DMZ) | Management net | DMZ | Allow (TCP/UDP) |
-| Internal (LAN → DMZ) | User VLANs | DMZ | Block |
-| Internal (LAN → Internet) | User VLANs | Any | Allow (filtered) |
-| DMZ → LAN | Web server | Any | Block |
-| DMZ → Firewall mgmt | Any | Firewall (443/80/22) | Block |
+| Direction | Source | Destination | Dst Port | Action |
+|---|---|---|---|---|
+| WAN → DMZ | Any | Web server | 80 | Allow |
+| WAN → LAN | Any | Any | Any | Block |
+| Management → DMZ | Management net | DMZ | Any | Allow |
+| Developers → DMZ | Developers net | Web server only | Any | Allow |
+| User VLANs → DMZ | User VLANs | Any | Any | Block |
+| User VLANs → Internet | User VLANs | Any | Any | Allow (filtered) |
+| DMZ → LAN | Any | Any | Any | Block |
+| DMZ → Firewall mgmt | Any | Firewall | 443/80/22 | Block |
 
 ### IDS/IPS placement
 
