@@ -12,7 +12,7 @@ The infrastructure is built around three core principles:
 clear separation between public-facing services, internal 
 LAN, and management traffic.
 
-→ Network topology: [`../diagrams/network-topology.png`](../diagrams/network-topology.png)  
+→ Network topology: [`../diagrams/network-topology.jpg`](../diagrams/network-topology.jpg)  
 → IP addressing and subnetting: [`subnetting.md`](subnetting.md)
 
 ---
