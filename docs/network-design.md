@@ -123,67 +123,6 @@ defined explicitly for each required flow, following the
 has access only to the resources strictly necessary for 
 its function.
 
-### Floor VLANs (user traffic — DHCP)
-
-| VLAN Name | VLAN ID | Subnet | Netmask | Gateway | DHCP Range |
-|---|---|---|---|---|---|
-| Floor 1 | 101 | 192.168.101.0/26 | 255.255.255.192 | 192.168.101.1 | .20 → .62 |
-| Floor 2 | 102 | 192.168.102.0/26 | 255.255.255.192 | 192.168.102.1 | .20 → .62 |
-| Floor 3 | 103 | 192.168.103.0/26 | 255.255.255.192 | 192.168.103.1 | .20 → .62 |
-| Floor 4 | 104 | 192.168.104.0/26 | 255.255.255.192 | 192.168.104.1 | .20 → .62 |
-| Floor 5 | 105 | 192.168.105.0/26 | 255.255.255.192 | 192.168.105.1 | .20 → .62 |
-| Floor 6 | 106 | 192.168.106.0/26 | 255.255.255.192 | 192.168.106.1 | .20 → .62 |
-
-Floor switch ports are configured in **Access mode**, 
-uplinks to the core switch in **Trunk mode**.
-
-### Management VLAN (static addressing)
-
-| VLAN Name | VLAN ID | Subnet | Netmask | Gateway |
-|---|---|---|---|---|
-| Management | 50 | 192.168.50.0/26 | 255.255.255.192 | 192.168.50.1 |
-
-| Device | Role | IP Address |
-|---|---|---|
-| Core router | Management gateway | 192.168.50.1 |
-| Core switch | Core management | 192.168.50.2 |
-| Floor switch 1 | Access management | 192.168.50.3 |
-| Floor switch 2 | Access management | 192.168.50.4 |
-| Floor switch 3 | Access management | 192.168.50.5 |
-| Floor switch 4 | Access management | 192.168.50.6 |
-| Floor switch 5 | Access management | 192.168.50.7 |
-| Floor switch 6 | Access management | 192.168.50.8 |
-| NAS | Storage management | 192.168.50.9 |
-| Perimeter firewall | Security management | 192.168.100.1 |
-| Internal firewall | Security management | 192.168.150.1 |
-| IDS 1 | DMZ monitoring | 192.168.50.60 |
-| IDS 2 | LAN monitoring | 192.168.50.61 |
-| IPS 1 | NAS protection | 192.168.50.62 |
-
-Access to the management VLAN is restricted to authorized 
-hosts via ACL. All user VLANs are blocked from reaching 
-the management segment.
-
-### NAS VLAN (static addressing)
-
-| VLAN Name | VLAN ID | Subnet | Netmask | Gateway | IP |
-|---|---|---|---|---|---|
-| NAS | 90 | 192.168.90.0/26 | 255.255.255.192 | 192.168.90.1 | 192.168.90.10 (static) |
-
-Users access the NAS exclusively via SMB for backup 
-operations. Administrative access is permitted only from 
-the management VLAN.
-
----
-
-## Security Design
-
-### Firewall policy — Default Deny
-
-All traffic is blocked by default. Rules are defined 
-explicitly for each permitted flow following the 
-**Least Privilege** principle.
-
 | Direction | Source | Destination | Action |
 |---|---|---|---|
 | Inbound (WAN → DMZ) | Any | Web server (port 80) | Allow |
