@@ -134,6 +134,12 @@ its function.
 | DMZ → LAN | Any | Any | Any | Block |
 | DMZ → Firewall mgmt | Any | Firewall | 443/80/22 | Block |
 
+The DMZ-to-LAN block ensures that a compromised public 
+service cannot initiate connections toward internal 
+resources. The firewall self-protection rule prevents 
+an attacker who gains access to the web server from 
+reaching the firewall management interface.
+
 ### IDS/IPS placement
 
 Three nodes are deployed at strategic points:
