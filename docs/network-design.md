@@ -163,18 +163,23 @@ Three nodes are deployed at strategic points:
 
 ### Structured cabling
 
-- Cat6 Ethernet cabling throughout all 6 floors
-- Patch panel termination per floor
-- Trunk uplinks between floor switches and core switch
+The physical layer uses Cat6 Ethernet cabling throughout 
+all 6 floors, with patch panel termination per floor and 
+organised rack cabling. Trunk uplinks connect floor 
+switches to the core switch.
 
 ### Hardware bill of materials
 
 | Component | Qty |
 |---|---|
-| 48-port unmanaged switch | 8 |
+| 48-port switch | 8 |
 | Core router | 1 |
 | Firewall appliance | 2 |
 | Web server | 1 |
 | NAS | 1 |
 | IDS/IPS nodes | 3 |
-| Cat6 cable (305m rolls) | 12 |
+| Cat6 cable (305 m rolls) | 12 |
+
+> 8 switches are deployed across the infrastructure: 
+> 6 floor switches (one per floor), 1 core switch, 
+> and 1 DMZ switch.
