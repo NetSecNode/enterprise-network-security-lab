@@ -7,12 +7,13 @@ for a mid-sized corporate environment distributed across a
 6-floor office building, hosting 120 workstations across 
 two operational profiles.
 
-The infrastructure is designed around three core principles:
+The infrastructure is built around three core principles:
 **security**, **scalability**, and **manageability** — with 
 clear separation between public-facing services, internal 
 LAN, and management traffic.
 
-→ Network topology diagram: [`../diagrams/network-topology.png`](../diagrams/network-topology.jpg)
+→ Network topology: [`../diagrams/network-topology.png`](../diagrams/network-topology.png)  
+→ IP addressing and subnetting: [`subnetting.md`](subnetting.md)
 
 ---
 
@@ -23,9 +24,9 @@ LAN, and management traffic.
 | Building floors | 6 |
 | Total workstations | 120 (20 per floor) |
 | Network zones | WAN / DMZ / Internal LAN |
-| Segmentation | VLAN-based (one per floor + management + NAS) |
+| Segmentation | VLAN-based (per floor + management + NAS) |
 | Firewall architecture | Dual firewall (perimeter + internal) |
-| Cabling | Cat6 structured cabling |
+| Cabling standard | Cat6 structured cabling |
 
 ---
 
@@ -51,18 +52,19 @@ include a dedicated GPU for graphics acceleration.
 The infrastructure is divided into three distinct zones:
 
 **WAN** — external internet connection, terminated at the 
-perimeter firewall.
+perimeter firewall. No direct access to internal resources 
+is permitted from this zone.
 
 **DMZ (Demilitarized Zone)** — isolated segment hosting 
 the public-facing web server. Positioned between the 
-perimeter firewall and the internal firewall, accessible 
-from the internet only on port 80. The DMZ switch also 
-connects IDS 1 for traffic monitoring.
+perimeter firewall and the internal firewall, reachable 
+from the internet exclusively on port 80. IDS 1 is 
+connected to the DMZ switch for traffic monitoring.
 
 **Internal LAN** — private corporate network, segmented 
 into per-floor VLANs. Accessible only through the internal 
-firewall. Contains the core switch, floor switches, NAS, 
-IDS 2, and IPS 1.
+firewall. Contains the core switch, floor switches, NAS 
+storage, IDS 2, and IPS 1.
 
 ### Traffic flow
 ```
@@ -70,14 +72,14 @@ Internet
     │
 Perimeter firewall
     │
-DMZ switch ──── Web server (DVWA)
-    │       └── IDS 1 (DMZ monitor)
+DMZ switch ──── Web server
+    │       └── IDS 1
     │
 Internal firewall
     │
 Core router
     │
-Core switch ──── IDS 2 (LAN monitor)
+Core switch ──── IDS 2
     │       └── IPS 1 ──── NAS
     │
 Floor switches (×6)
@@ -88,6 +90,38 @@ Workstations (20 per floor)
 ---
 
 ## VLAN Design
+
+The internal LAN is logically segmented into 9 VLANs:
+
+- 6 **user VLANs** (one per floor) with dynamic DHCP 
+  addressing — isolate broadcast domains and limit 
+  lateral movement in case of compromise
+- 1 **management VLAN** with static addressing — 
+  dedicated exclusively to network appliance administration
+- 1 **NAS VLAN** with static addressing — separates 
+  storage traffic from both user and management traffic
+- 1 **DMZ segment** — isolates public-facing services 
+  from the internal network
+
+Floor switch ports are configured in **Access mode**. 
+Uplinks to the core switch use **Trunk mode** to carry 
+all required VLANs. Inter-VLAN routing is handled 
+centrally by the core router.
+
+→ Full IP addressing scheme and subnet calculations: 
+[`subnetting.md`](subnetting.md)
+
+---
+
+## Security Design
+
+### Firewall policy — Default Deny
+
+All traffic is blocked by default. Permit rules are 
+defined explicitly for each required flow, following the 
+**Least Privilege** principle — every user and service 
+has access only to the resources strictly necessary for 
+its function.
 
 ### Floor VLANs (user traffic — DHCP)
 
