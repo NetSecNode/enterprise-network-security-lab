@@ -142,20 +142,34 @@ reaching the firewall management interface.
 
 ### IDS/IPS placement
 
-Three nodes are deployed at strategic points:
+Three nodes are deployed at strategic points within 
+the infrastructure:
 
-- **IDS 1** — connected to the DMZ switch, monitors 
-  traffic between the perimeter firewall and the internal 
-  network
-- **IDS 2** — connected to the core switch, monitors 
-  inbound traffic from the core router to the internal LAN
-- **IPS 1** — deployed inline between the core switch and 
-  the NAS, providing active traffic filtering and 
-  protection for storage access
+**IDS 1** — connected to the DMZ switch. Monitors all 
+traffic transiting the DMZ segment from three directions: 
+inbound requests from the WAN through the perimeter 
+firewall, outbound responses from the web server, and 
+traffic originating from the internal LAN through the 
+internal firewall. This positioning provides full 
+visibility on the DMZ segment, covering both external 
+attack attempts targeting public-facing services and 
+anomalous lateral traffic initiated from within the 
+internal network.
 
-> In the lab environment, IDS/IPS nodes are simulated 
-> using network sniffers due to hardware constraints in 
-> Cisco Packet Tracer.
+**IDS 2** — connected to the core switch. Monitors 
+traffic entering the internal LAN from the core router, 
+detecting anomalous patterns before they propagate 
+across floor VLANs. Provides visibility on inter-VLAN 
+traffic and any suspicious activity crossing segment 
+boundaries within the internal network.
+
+**IPS 1** — deployed inline between the core switch and 
+the NAS. Unlike the IDS nodes, IPS 1 operates in active 
+mode — it does not only detect but actively blocks 
+unauthorized or anomalous connections before they reach 
+the NAS, protecting stored data from both external 
+threats that have bypassed the firewall and internal 
+lateral movement attempts.
 
 ---
 
