@@ -2,20 +2,19 @@
 
 ## Requirements Analysis
 
-Before selecting subnet sizes, the host requirements 
-for each network segment were assessed:
+The following table outlines the host requirements for 
+each network segment across the three network zones.
 
-| Segment | Required hosts | Notes |
+| Segment | Zone | Required hosts |
 |---|---|---|
-| Floor 1–6 (each) | 20 | Workstations per floor |
-| Management | ~15 | Network appliances only |
-| NAS | 1 | Single storage device |
-| DMZ | 1 | Web server only |
-
-The chosen address space is **192.168.0.0/16** 
-(private RFC 1918), subdivided using VLSM (Variable 
-Length Subnet Masking) to allocate the minimum 
-necessary address space per segment.
+| Floor 1 | Internal LAN | 20 workstations |
+| Floor 2 | Internal LAN | 20 workstations |
+| Floor 3 | Internal LAN | 20 workstations |
+| Floor 4 | Internal LAN | 20 workstations |
+| Floor 5 | Internal LAN | 20 workstations |
+| Floor 6 | Internal LAN | 20 workstations |
+| DMZ | DMZ | 1 web server |
+| NAS | Internal LAN | 1 storage device |
 
 ---
 
