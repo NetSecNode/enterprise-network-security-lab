@@ -13,8 +13,8 @@ each network segment across the three network zones.
 | Floor 4 | Internal LAN | 20 workstations |
 | Floor 5 | Internal LAN | 20 workstations |
 | Floor 6 | Internal LAN | 20 workstations |
-| DMZ | DMZ | 1 web server |
 | NAS | Internal LAN | 1 storage device |
+| DMZ | DMZ | 1 web server |
 
 ---
 
